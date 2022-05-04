@@ -12,7 +12,7 @@ type pqHandler struct {
 
 func (s *pqHandler) GetTodos(session string) []*Todo {
 	var todos []*Todo
-	rows, err := s.db.Query("select id , name , completed , createdAt from todos where sessionId = ?", session)
+	rows, err := s.db.Query("select id , name , completed , createdAt from todos where sessionId = $1", session)
 	if err != nil {
 		panic(err)
 	}
@@ -26,7 +26,7 @@ func (s *pqHandler) GetTodos(session string) []*Todo {
 }
 
 func (s *pqHandler) AddTodo(name string, sessionId string) *Todo {
-	var stmt, err = s.db.Prepare("insert into todos (sessionId,name, completed, createdAt) values (?,?,?,datetime('now'))")
+	var stmt, err = s.db.Prepare("insert into todos (sessionId,name, completed, createdAt) values ($1,$2,$3,now())")
 	if err != nil {
 		panic(err)
 	}
@@ -44,7 +44,7 @@ func (s *pqHandler) AddTodo(name string, sessionId string) *Todo {
 }
 
 func (s *pqHandler) DeleteTodo(id int) bool {
-	stmt, err := s.db.Prepare("delete from todos where id = ?")
+	stmt, err := s.db.Prepare("delete from todos where id = $1")
 	if err != nil {
 		panic(err)
 	}
@@ -54,7 +54,7 @@ func (s *pqHandler) DeleteTodo(id int) bool {
 }
 
 func (s *pqHandler) CompleteTodo(id int, complete bool) bool {
-	stmt, err := s.db.Prepare("update todos set completed = ? where id = ?")
+	stmt, err := s.db.Prepare("update todos set completed = $1 where id = $2")
 	if err != nil {
 		panic(err)
 	}
