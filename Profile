@@ -1,1 +1,1 @@
-web: bin/todos
+web: bin/joyroku/todos
