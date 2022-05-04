@@ -53,6 +53,8 @@ func (s *pqHandler) DeleteTodo(id int) bool {
 	return cnt > 0
 }
 
+//git 커밋을 위한 주석
+
 func (s *pqHandler) CompleteTodo(id int, complete bool) bool {
 	stmt, err := s.db.Prepare("update todos set completed = $1 where id = $2")
 	if err != nil {
