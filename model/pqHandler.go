@@ -26,17 +26,17 @@ func (s *pqHandler) GetTodos(session string) []*Todo {
 }
 
 func (s *pqHandler) AddTodo(name string, sessionId string) *Todo {
-	var stmt, err = s.db.Prepare("insert into todos (sessionId,name, completed, createdAt) values ($1,$2,$3,now())")
+	var stmt, err = s.db.Prepare("insert into todos (sessionId,name, completed, createdAt) values ($1,$2,$3,now()) returning id")
 	if err != nil {
 		panic(err)
 	}
-	rst, err := stmt.Exec(sessionId, name, false)
+	var id int
+	err = stmt.QueryRow(sessionId, name, false).Scan($id)
 	if err != nil {
 		panic(err)
 	}
-	id, _ := rst.LastInsertId()
 	var todo Todo
-	todo.ID = int(id)
+	todo.ID = id
 	todo.Name = name
 	todo.CreatedAt = time.Now()
 	todo.Completed = false
