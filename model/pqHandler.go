@@ -78,7 +78,7 @@ func newPqHandler(dbConn string) DBHandler {
 	statement, err := database.Prepare(
 		`create table if not exists todos(
 				id serial primary key  ,
-				sessionId string,
+				sessionId varchar(256),
 				name text,
 				completed boolean,
 				createdAt datetime);`)
