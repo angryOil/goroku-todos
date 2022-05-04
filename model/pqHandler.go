@@ -31,7 +31,7 @@ func (s *pqHandler) AddTodo(name string, sessionId string) *Todo {
 		panic(err)
 	}
 	var id int
-	err = stmt.QueryRow(sessionId, name, false).Scan($id)
+	err = stmt.QueryRow(sessionId, name, false).Scan(&id)
 	if err != nil {
 		panic(err)
 	}

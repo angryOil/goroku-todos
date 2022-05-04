@@ -4,13 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/stretchr/testify/assert"
-	"joyroku/todos/model"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
 	"os"
 	"strconv"
 	"testing"
+	"todos/model"
 )
 
 func TestTodos(t *testing.T) {
