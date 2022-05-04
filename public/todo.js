@@ -34,7 +34,7 @@
             const id = $(this).closest("li").attr('id');
             const $self = $(this);
             const reqCompleteValue = !$(this).attr('checked');
-            $.get("/todoComplete/" + id +"?complete="+reqCompleteValue, function (data) {
+            $.get("/todoComplete/" + id +"?completed="+reqCompleteValue, function (data) {
                 if (reqCompleteValue) {
                     $self.attr('checked', 'checked');
                 }else {
