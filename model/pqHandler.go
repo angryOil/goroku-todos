@@ -81,9 +81,15 @@ func newPqHandler(dbConn string) DBHandler {
 				sessionId string,
 				name text,
 				completed boolean,
-				createdAt datetime);
-				create index if not exists sessionIdIndexOnTodos on todos(sessionId asc);
-				`)
+				createdAt datetime);`)
+	if err != nil {
+		panic(err)
+	}
+	_, err = statement.Exec()
+	if err != nil {
+		panic(err)
+	}
+	statement, err = database.Prepare(`create index if not exists sessionIdIndexOnTodos on todos(sessionId asc);`)
 	if err != nil {
 		panic(err)
 	}
