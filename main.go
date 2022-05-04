@@ -13,7 +13,7 @@ func main() {
 	*/
 	m := app.MakeHandler("./test.db")
 	defer m.Close()
-	err := http.ListenAndServe(port, m)
+	err := http.ListenAndServe(":"+port, m)
 	if err != nil {
 		panic(err)
 	}
