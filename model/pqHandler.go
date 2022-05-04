@@ -81,7 +81,7 @@ func newPqHandler(dbConn string) DBHandler {
 				sessionId varchar(256),
 				name text,
 				completed boolean,
-				createdAt datetime);`)
+				createdAt timestamp );`)
 	if err != nil {
 		panic(err)
 	}
