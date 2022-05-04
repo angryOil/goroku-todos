@@ -6,8 +6,8 @@ import (
 	"github.com/gorilla/sessions"
 	"github.com/unrolled/render"
 	"github.com/urfave/negroni"
-	"joyroku/todos/model"
 	"net/http"
+	"todos/model"
 
 	"os"
 	"strconv"

@@ -1,9 +1,9 @@
 package main
 
 import (
-	"joyroku/todos/app"
 	"net/http"
 	"os"
+	"todos/app"
 )
 
 func main() {
